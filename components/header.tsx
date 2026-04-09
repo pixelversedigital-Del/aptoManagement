@@ -37,23 +37,23 @@ export function Header() {
         </div>
         
         <div className="hidden lg:flex lg:gap-x-10">
-          <Link href="#services" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <Link href="/services" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             Services
           </Link>
-          <Link href="#about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <Link href="/about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             About
           </Link>
-          <Link href="#solutions" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <Link href="/solutions" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             Solutions
           </Link>
-          <Link href="#contact" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <Link href="/contact" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             Contact
           </Link>
         </div>
         
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
           <Link
-            href="#contact"
+            href="/contact"
             className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-accent transition-colors"
           >
             Get Started
@@ -66,35 +66,35 @@ export function Header() {
         <div className="lg:hidden">
           <div className="space-y-1 px-6 pb-6 pt-2">
             <Link
-              href="#services"
+              href="/services"
               className="block rounded-lg px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
               onClick={() => setMobileMenuOpen(false)}
             >
               Services
             </Link>
             <Link
-              href="#about"
+              href="/about"
               className="block rounded-lg px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
               onClick={() => setMobileMenuOpen(false)}
             >
               About
             </Link>
             <Link
-              href="#solutions"
+              href="/solutions"
               className="block rounded-lg px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
               onClick={() => setMobileMenuOpen(false)}
             >
               Solutions
             </Link>
             <Link
-              href="#contact"
+              href="/contact"
               className="block rounded-lg px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
               onClick={() => setMobileMenuOpen(false)}
             >
               Contact
             </Link>
             <Link
-              href="#contact"
+              href="/contact"
               className="mt-4 block rounded-full bg-primary px-5 py-2.5 text-center text-sm font-semibold text-primary-foreground"
               onClick={() => setMobileMenuOpen(false)}
             >
