@@ -50,7 +50,7 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Phone</p>
-                  <p className="font-medium text-foreground">+91 120 4296319</p>
+                  <p className="font-medium text-foreground">+91 120 6870897</p>
                 </div>
               </div>
               
@@ -75,7 +75,7 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Location</p>
-                  <p className="font-medium text-foreground">Noida, India</p>
+                  <p className="font-medium text-foreground">401, 402, 4th Floor, Sector 62, Noida, UP - 201301</p>
                 </div>
               </div>
             </div>

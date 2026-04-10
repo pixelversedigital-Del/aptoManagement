@@ -2,6 +2,10 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
+import aptoLogo from "@/assets/images/Apto_Logo_DarkBG.svg"
+import { INDUSTRIES } from "@/components/industry-data"
+import { SERVICE_PAGES } from "@/components/service-data"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -11,9 +15,12 @@ export function Header() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
-            <span className="text-xl font-semibold tracking-tight text-foreground">
-              .apto
-            </span>
+            <Image
+              src={aptoLogo}
+              alt="APTO Management"
+              className="h-16 w-auto"
+              priority
+            />
           </Link>
         </div>
         
@@ -36,17 +43,82 @@ export function Header() {
           </button>
         </div>
         
-        <div className="hidden lg:flex lg:gap-x-10">
-          <Link href="/services" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-            Services
+        <div className="hidden lg:flex lg:items-center lg:gap-x-10">
+          <div className="group relative">
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              About
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </Link>
+            <div className="invisible absolute left-0 top-full z-50 mt-3 w-64 rounded-xl border border-border bg-card p-2 opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
+              <Link href="/about/about-apto" className="block rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
+                About Apto
+              </Link>
+              <Link href="/about/apto-advantage" className="block rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
+                Apto Advantage
+              </Link>
+              <Link href="/about/our-clients" className="block rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
+                Our Clients
+              </Link>
+              <Link href="/about/our-methodology" className="block rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
+                Our Methodology
+              </Link>
+            </div>
+          </div>
+          <div className="group relative">
+            <Link
+              href="/industries"
+              className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Industries
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </Link>
+            <div className="invisible absolute left-0 top-full z-50 mt-3 w-[34rem] rounded-xl border border-border bg-card p-2 opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
+              <div className="grid grid-cols-2 gap-1">
+                {INDUSTRIES.map((industry) => (
+                  <Link
+                    key={industry.slug}
+                    href={`/industries/${industry.slug}`}
+                    className="block rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                  >
+                    {industry.title}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="group relative">
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Services
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </Link>
+            <div className="invisible absolute left-0 top-full z-50 mt-3 w-80 rounded-xl border border-border bg-card p-2 opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
+              {SERVICE_PAGES.map((service) => (
+                <Link
+                  key={service.slug}
+                  href={`/services/${service.slug}`}
+                  className="block rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                >
+                  {service.title}
+                </Link>
+              ))}
+            </div>
+          </div>
+          <Link href="/careers" className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            Careers
           </Link>
-          <Link href="/about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-            About
-          </Link>
-          <Link href="/solutions" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-            Solutions
-          </Link>
-          <Link href="/contact" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <Link href="/contact" className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             Contact
           </Link>
         </div>
@@ -66,13 +138,6 @@ export function Header() {
         <div className="lg:hidden">
           <div className="space-y-1 px-6 pb-6 pt-2">
             <Link
-              href="/services"
-              className="block rounded-lg px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Services
-            </Link>
-            <Link
               href="/about"
               className="block rounded-lg px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
               onClick={() => setMobileMenuOpen(false)}
@@ -80,11 +145,73 @@ export function Header() {
               About
             </Link>
             <Link
-              href="/solutions"
+              href="/about/about-apto"
+              className="ml-4 block rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              About Apto
+            </Link>
+            <Link
+              href="/about/apto-advantage"
+              className="ml-4 block rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Apto Advantage
+            </Link>
+            <Link
+              href="/about/our-clients"
+              className="ml-4 block rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Our Clients
+            </Link>
+            <Link
+              href="/about/our-methodology"
+              className="ml-4 block rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Our Methodology
+            </Link>
+            <Link
+              href="/industries"
               className="block rounded-lg px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Solutions
+              Industries
+            </Link>
+            {INDUSTRIES.map((industry) => (
+              <Link
+                key={industry.slug}
+                href={`/industries/${industry.slug}`}
+                className="ml-4 block rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {industry.title}
+              </Link>
+            ))}
+            <Link
+              href="/services"
+              className="block rounded-lg px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Services
+            </Link>
+            {SERVICE_PAGES.map((service) => (
+              <Link
+                key={service.slug}
+                href={`/services/${service.slug}`}
+                className="ml-4 block rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {service.title}
+              </Link>
+            ))}
+            <Link
+              href="/careers"
+              className="block rounded-lg px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Careers
             </Link>
             <Link
               href="/contact"

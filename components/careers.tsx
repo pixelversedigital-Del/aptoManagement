@@ -1,8 +1,8 @@
 import Link from "next/link"
 
-export function Solutions() {
+export function Careers() {
   return (
-    <section id="solutions" className="py-24 lg:py-32 bg-card">
+    <section id="careers" className="py-24 lg:py-32 bg-card">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden rounded-3xl border border-border">
           {/* Left side - Image/Content */}
@@ -28,7 +28,7 @@ export function Solutions() {
                 of expertise and infectious energy.
               </p>
               <Link
-                href="#contact"
+                href="/contact"
                 className="inline-flex items-center justify-center rounded-full border border-foreground bg-transparent px-6 py-3 text-sm font-semibold text-foreground hover:bg-foreground hover:text-background transition-colors w-fit"
               >
                 Join the collective
