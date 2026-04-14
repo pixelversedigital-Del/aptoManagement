@@ -47,7 +47,7 @@ export function Services() {
   return (
     <section id="services" className="py-24 lg:py-32 bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mb-16">
+        <div className="mb-16 animate-fade-up">
           <p className="text-sm font-medium uppercase tracking-widest text-primary mb-4">
             What we do
           </p>
@@ -61,15 +61,15 @@ export function Services() {
           {services.map((service) => (
             <div
               key={service.id}
-              className="group relative bg-card border border-border rounded-2xl p-8 hover:border-primary/50 transition-all duration-300 cursor-pointer"
+              className="group relative bg-card border border-border rounded-2xl p-8 hover:border-primary/50 transition-all duration-300 cursor-pointer hover-lift animate-fade-up"
               onClick={() => setExpandedService(expandedService === service.id ? null : service.id)}
             >
               <div className="flex items-start justify-between mb-4">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
                   <div className="w-6 h-6 rounded-md bg-primary/30" />
                 </div>
                 <button
-                  className="w-8 h-8 rounded-full border border-border flex items-center justify-center text-muted-foreground group-hover:border-primary group-hover:text-primary transition-colors"
+                  className="w-8 h-8 rounded-full border border-border flex items-center justify-center text-muted-foreground group-hover:border-primary group-hover:text-primary transition-colors glow-on-hover"
                   aria-label={expandedService === service.id ? "Collapse" : "Expand"}
                 >
                   <svg
@@ -111,7 +111,7 @@ export function Services() {
                 </div>
               </div>
               
-              <p className="mt-4 text-sm font-medium text-primary group-hover:underline">
+              <p className="mt-4 text-sm font-medium text-primary group-hover:underline transition-all duration-200 group-hover:tracking-wide">
                 .read more
               </p>
             </div>

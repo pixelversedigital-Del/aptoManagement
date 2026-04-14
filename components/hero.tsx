@@ -1,4 +1,6 @@
 import Link from "next/link"
+import Image from "next/image"
+import heroTeamVisual from "@/assets/images/hero-team-visual.svg"
 
 export function Hero() {
   return (
@@ -11,7 +13,7 @@ export function Hero() {
       
       <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
         <div className="flex flex-col lg:flex-row lg:items-center lg:gap-16">
-          <div className="flex-1 text-center lg:text-left">
+          <div className="flex-1 text-center lg:text-left animate-fade-up">
             <p className="text-sm font-medium uppercase tracking-widest text-primary mb-6">
               HR Management Solutions
             </p>
@@ -28,38 +30,44 @@ export function Hero() {
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link
                 href="#services"
-                className="rounded-full bg-primary px-8 py-4 text-sm font-semibold text-primary-foreground shadow-lg hover:bg-accent transition-all hover:scale-105"
+                className="rounded-full bg-primary px-8 py-4 text-sm font-semibold text-primary-foreground shadow-lg hover:bg-accent transition-all hover:scale-105 glow-on-hover"
               >
                 Explore Services
               </Link>
               <Link
                 href="#contact"
-                className="rounded-full border border-border bg-transparent px-8 py-4 text-sm font-semibold text-foreground hover:bg-muted transition-colors"
+                className="rounded-full border border-border bg-transparent px-8 py-4 text-sm font-semibold text-foreground hover:bg-muted transition-colors glow-on-hover"
               >
                 Get in Touch
               </Link>
             </div>
           </div>
           
-          <div className="flex-1 mt-16 lg:mt-0">
+          <div className="flex-1 mt-16 lg:mt-0 animate-fade-up">
             <div className="relative">
-              <div className="aspect-[4/3] rounded-2xl bg-card border border-border overflow-hidden">
+              <div className="aspect-[4/3] rounded-2xl bg-card border border-border overflow-hidden hover-lift">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10" />
+                <Image
+                  src={heroTeamVisual}
+                  alt="APTO recruitment team visual"
+                  className="absolute inset-0 h-full w-full object-cover opacity-45 animate-float-soft"
+                  priority
+                />
                 <div className="relative h-full flex items-center justify-center p-8">
                   <div className="grid grid-cols-2 gap-4 w-full max-w-md">
-                    <div className="bg-muted rounded-xl p-6 border border-border">
+                    <div className="bg-muted rounded-xl p-6 border border-border hover-lift">
                       <div className="text-3xl font-bold text-primary">25+</div>
                       <div className="text-sm text-muted-foreground mt-1">Years Experience</div>
                     </div>
-                    <div className="bg-muted rounded-xl p-6 border border-border">
+                    <div className="bg-muted rounded-xl p-6 border border-border hover-lift">
                       <div className="text-3xl font-bold text-primary">500+</div>
                       <div className="text-sm text-muted-foreground mt-1">Clients Served</div>
                     </div>
-                    <div className="bg-muted rounded-xl p-6 border border-border">
+                    <div className="bg-muted rounded-xl p-6 border border-border hover-lift">
                       <div className="text-3xl font-bold text-primary">10K+</div>
                       <div className="text-sm text-muted-foreground mt-1">Placements Made</div>
                     </div>
-                    <div className="bg-muted rounded-xl p-6 border border-border">
+                    <div className="bg-muted rounded-xl p-6 border border-border hover-lift">
                       <div className="text-3xl font-bold text-primary">98%</div>
                       <div className="text-sm text-muted-foreground mt-1">Client Retention</div>
                     </div>
