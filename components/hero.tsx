@@ -18,7 +18,7 @@ export function Hero() {
               HR Management Solutions
             </p>
             <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl xl:text-7xl text-balance">
-              where deep HR
+              Where deep HR
               <span className="text-muted-foreground"> meets</span>
               <br />
               a human mindset.
