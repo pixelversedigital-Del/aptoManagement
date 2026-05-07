@@ -11,7 +11,7 @@ import {
 
 const PUBLIC_FILE = /\.[^/]+$/
 
-export function proxy(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   if (
