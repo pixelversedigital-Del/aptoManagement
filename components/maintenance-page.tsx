@@ -28,6 +28,14 @@ const initialFormData: EnquiryFormData = {
 
 export function MaintenancePage() {
   const [formData, setFormData] = useState<EnquiryFormData>(initialFormData)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitState, setSubmitState] = useState<{
+    tone: "success" | "error" | null
+    message: string
+  }>({
+    tone: null,
+    message: "",
+  })
 
   const updateField = (field: keyof EnquiryFormData, value: string) => {
     setFormData((current) => ({
@@ -36,36 +44,66 @@ export function MaintenancePage() {
     }))
   }
 
-  const handleSubmit: NonNullable<React.ComponentProps<"form">["onSubmit"]> = (
-    event
-  ) => {
+  const handleSubmit: NonNullable<React.ComponentProps<"form">["onSubmit"]> =
+    async (event) => {
     event.preventDefault()
 
-    const fullName = `${formData.firstName} ${formData.lastName}`.trim()
-    const body = [
-      `Name: ${fullName}`,
-      `Email: ${formData.email}`,
-      `Organization: ${formData.organization || "Not provided"}`,
-      `Role: ${formData.role || "Not provided"}`,
-      "",
-      "Message:",
-      formData.message,
-    ].join("\n")
+    setIsSubmitting(true)
+    setSubmitState({
+      tone: null,
+      message: "",
+    })
 
-    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-      "Website enquiry from under-construction page"
-    )}&body=${encodeURIComponent(body)}`
+    try {
+      const response = await fetch("/api/maintenance-enquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
 
-    window.location.href = mailtoUrl
+      const payload = (await response.json()) as { message?: string }
+
+      if (!response.ok) {
+        throw new Error(payload.message || "Unable to send your enquiry.")
+      }
+
+      setSubmitState({
+        tone: "success",
+        message:
+          "Your enquiry has been sent to our team. We will get back to you soon.",
+      })
+      setFormData(initialFormData)
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Unable to send your enquiry right now."
+
+      setSubmitState({
+        tone: "error",
+        message,
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.18),_transparent_32%),linear-gradient(160deg,_#07111c_0%,_#0f1b2a_45%,_#13263a_100%)] text-white">
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:72px_72px] opacity-30" />
-
-      <section className="relative mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-16 lg:py-20">
+      <section className="relative mx-auto w-full max-w-7xl px-6 py-4 sm:px-10 lg:px-16 lg:py-8">
         <div className="mx-auto max-w-3xl text-center animate-fade-up">
-          <span className="inline-flex items-center rounded-full border border-sky-400/30 bg-sky-400/10 px-4 py-1 text-sm font-medium tracking-[0.2em] text-sky-200 uppercase">
+          <div className="mx-auto flex w-full max-w-[19rem] items-center justify-center rounded-[2rem] border border-white/10 px-6 py-4 shadow-[0_18px_45px_rgba(7,17,28,0.35)] backdrop-blur-sm">
+            <img
+              src="/apto-logo.svg"
+              alt="APTO Management Services logo"
+              className="h-auto w-full object-contain"
+            />
+          </div>
+
+          <span className="mt-6 inline-flex items-center rounded-full border border-sky-400/30 bg-sky-400/10 px-4 py-1 text-sm font-medium tracking-[0.2em] text-sky-200 uppercase">
             Website Redevelopment in Progress
           </span>
 
@@ -164,8 +202,8 @@ export function MaintenancePage() {
               Send us an enquiry
             </h2>
             <p className="mt-3 text-sm leading-7 text-slate-300">
-              When a visitor submits this form, their email app opens with the
-              enquiry details prefilled and addressed to our team.
+              Submit the form and our team will receive your enquiry directly by
+              email.
             </p>
 
             <form onSubmit={handleSubmit} className="mt-8 space-y-6">
@@ -257,10 +295,23 @@ export function MaintenancePage() {
 
               <button
                 type="submit"
+                disabled={isSubmitting}
                 className="glow-on-hover w-full rounded-full bg-sky-400 px-6 py-3 text-sm font-semibold text-slate-950 sm:w-auto"
               >
-                Send enquiry via email
+                {isSubmitting ? "Sending..." : "Send enquiry"}
               </button>
+
+              {submitState.message ? (
+                <p
+                  className={`text-sm ${
+                    submitState.tone === "success"
+                      ? "text-emerald-300"
+                      : "text-rose-300"
+                  }`}
+                >
+                  {submitState.message}
+                </p>
+              ) : null}
             </form>
           </div>
         </div>
