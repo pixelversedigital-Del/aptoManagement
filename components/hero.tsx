@@ -1,17 +1,17 @@
 import Link from "next/link"
 import Image from "next/image"
-import heroTeamVisual from "@/assets/images/hero-team-visual.svg"
+import heroTeamVisual from "@/assets/images/hero_1280.jpg"
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-4">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
       </div>
       
-      <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
+      <div className="relative mx-auto max-w-7xl px-6 pt-12 pb-24 lg:px-8 lg:pt-12 lg:pb-32">
         <div className="flex flex-col lg:flex-row lg:items-center lg:gap-16">
           <div className="flex-1 text-center lg:text-left animate-fade-up">
             <p className="text-sm font-medium uppercase tracking-widest text-primary mb-6">
@@ -46,11 +46,11 @@ export function Hero() {
           <div className="flex-1 mt-16 lg:mt-0 animate-fade-up">
             <div className="relative">
               <div className="aspect-[4/3] rounded-2xl bg-card border border-border overflow-hidden hover-lift">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl" />
                 <Image
                   src={heroTeamVisual}
                   alt="APTO recruitment team visual"
-                  className="absolute inset-0 h-full w-full object-cover opacity-45 animate-float-soft"
+                  className="absolute inset-0 h-full w-full object-cover opacity-95 animate-float-soft rounded-2xl"
                   priority
                 />
                 <div className="relative h-full flex items-center justify-center p-8">

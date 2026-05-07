@@ -12,6 +12,16 @@ type MaintenanceEnquiryPayload = {
   message: string
 }
 
+type SupabaseMaintenanceEnquiryRow = {
+  first_name: string
+  last_name: string
+  email: string
+  organization: string | null
+  role: string | null
+  message: string
+  source_page: string
+}
+
 const isNonEmptyString = (value: unknown): value is string =>
   typeof value === "string" && value.trim().length > 0
 
@@ -46,6 +56,72 @@ const normalizePayload = (
   }
 }
 
+const getSupabaseConfig = () => {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim()
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim()
+
+  if (!url || !serviceRoleKey) {
+    return null
+  }
+
+  return {
+    url: url.replace(/\/$/, ""),
+    serviceRoleKey,
+  }
+}
+
+const saveMaintenanceEnquiry = async (payload: MaintenanceEnquiryPayload) => {
+  const supabaseConfig = getSupabaseConfig()
+
+  if (!supabaseConfig) {
+    return {
+      ok: false,
+      message:
+        "Database connection is not configured yet. Add Supabase environment variables.",
+    }
+  }
+
+  const row: SupabaseMaintenanceEnquiryRow = {
+    first_name: payload.firstName,
+    last_name: payload.lastName,
+    email: payload.email,
+    organization: payload.organization || null,
+    role: payload.role || null,
+    message: payload.message,
+    source_page: "/under-construction",
+  }
+
+  const response = await fetch(
+    `${supabaseConfig.url}/rest/v1/maintenance_enquiries`,
+    {
+      method: "POST",
+      headers: {
+        apikey: supabaseConfig.serviceRoleKey,
+        Authorization: `Bearer ${supabaseConfig.serviceRoleKey}`,
+        "Content-Type": "application/json",
+        Prefer: "return=minimal",
+      },
+      body: JSON.stringify(row),
+    }
+  )
+
+  if (!response.ok) {
+    const errorText = await response.text()
+    console.error("Supabase maintenance enquiry insert failed", errorText)
+
+    return {
+      ok: false,
+      message:
+        "We could not save your enquiry right now. Please try again shortly.",
+    }
+  }
+
+  return {
+    ok: true,
+    message: "Enquiry saved successfully.",
+  }
+}
+
 const sendViaResend = async (payload: MaintenanceEnquiryPayload) => {
   const resendApiKey = process.env.RESEND_API_KEY
 
@@ -57,7 +133,8 @@ const sendViaResend = async (payload: MaintenanceEnquiryPayload) => {
     }
   }
 
-  const recipient = process.env.MAINTENANCE_ENQUIRY_TO_EMAIL?.trim() || FALLBACK_RECIPIENT_EMAIL
+  const recipient =
+    process.env.MAINTENANCE_ENQUIRY_TO_EMAIL?.trim() || FALLBACK_RECIPIENT_EMAIL
   const from = process.env.RESEND_FROM_EMAIL?.trim() || FALLBACK_FROM_EMAIL
   const fullName = `${payload.firstName} ${payload.lastName}`.trim()
 
@@ -140,13 +217,23 @@ export async function POST(request: Request) {
       )
     }
 
-    const result = await sendViaResend(payload)
+    const result = await saveMaintenanceEnquiry(payload)
 
     if (!result.ok) {
       return NextResponse.json({ message: result.message }, { status: 500 })
     }
 
-    return NextResponse.json({ message: result.message })
+    if (process.env.RESEND_API_KEY) {
+      const emailResult = await sendViaResend(payload)
+
+      if (!emailResult.ok) {
+        console.error("Maintenance enquiry email failed", emailResult.message)
+      }
+    }
+
+    return NextResponse.json({
+      message: "Your enquiry has been saved. We will get back to you soon.",
+    })
   } catch (error) {
     console.error("Maintenance enquiry submission failed", error)
 

@@ -72,7 +72,7 @@ export function MaintenancePage() {
       setSubmitState({
         tone: "success",
         message:
-          "Your enquiry has been sent to our team. We will get back to you soon.",
+          "Your enquiry has been saved. We will get back to you soon.",
       })
       setFormData(initialFormData)
     } catch (error) {
@@ -103,7 +103,7 @@ export function MaintenancePage() {
             />
           </div>
 
-          <span className="mt-6 inline-flex items-center rounded-full border border-sky-400/30 bg-sky-400/10 px-4 py-1 text-sm font-medium tracking-[0.2em] text-sky-200 uppercase">
+          <span className="mt-6 inline-flex items-center rounded-full border border-sky-400/30 bg-sky-400/10 px-4 py-1 text-sm font-medium tracking-[.2em] text-sky-200 uppercase">
             Website Redevelopment in Progress
           </span>
 
@@ -120,10 +120,10 @@ export function MaintenancePage() {
 
         <div className="mt-14 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
           <div className="animate-fade-up space-y-6">
-            <div className="rounded-[2rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm sm:p-8">
+            <div className="rounded-[2rem] border border-white/10 bg-white/[6%] p-6 backdrop-blur-sm sm:p-8">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm uppercase tracking-[0.28em] text-sky-200/70">
+                  <p className="text-sm uppercase tracking-[.28em] text-sky-200/70">
                     Status
                   </p>
                   <h2 className="mt-2 text-2xl font-bold text-white">
@@ -162,7 +162,7 @@ export function MaintenancePage() {
             </div>
 
             <div className="rounded-[2rem] border border-white/10 bg-slate-950/35 p-6 backdrop-blur-sm sm:p-8">
-              <p className="text-sm uppercase tracking-[0.28em] text-sky-200/75">
+              <p className="text-sm uppercase tracking-[.28em] text-sky-200/75">
                 Contact Information
               </p>
 
@@ -197,19 +197,18 @@ export function MaintenancePage() {
             </div>
           </div>
 
-          <div className="animate-fade-up rounded-[2rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm sm:p-8">
+          <div className="animate-fade-up rounded-[2rem] border border-white/10 bg-white/[6%] p-6 backdrop-blur-sm sm:p-8">
             <h2 className="text-2xl font-bold text-white">
               Send us an enquiry
             </h2>
             <p className="mt-3 text-sm leading-7 text-slate-300">
-              Submit the form and our team will receive your enquiry directly by
-              email.
+              Submit the form and our team will receive your enquiry.
             </p>
 
             <form onSubmit={handleSubmit} className="mt-8 space-y-6">
               <div className="grid gap-6 sm:grid-cols-2">
                 <label className="block">
-                  <span className="mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-slate-300">
+                  <span className="mb-2 block text-xs font-medium uppercase tracking-[.2em] text-slate-300">
                     First Name
                   </span>
                   <input
@@ -218,13 +217,13 @@ export function MaintenancePage() {
                     onChange={(event) =>
                       updateField("firstName", event.target.value)
                     }
-                    className="w-full rounded-2xl border border-white/12 bg-slate-950/45 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-sky-300/60"
+                    className="w-full rounded-2xl border border-white/[12%] bg-slate-950/45 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-sky-300/60"
                     required
                   />
                 </label>
 
                 <label className="block">
-                  <span className="mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-slate-300">
+                  <span className="mb-2 block text-xs font-medium uppercase tracking-[.2em] text-slate-300">
                     Last Name
                   </span>
                   <input
@@ -233,28 +232,28 @@ export function MaintenancePage() {
                     onChange={(event) =>
                       updateField("lastName", event.target.value)
                     }
-                    className="w-full rounded-2xl border border-white/12 bg-slate-950/45 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-sky-300/60"
+                    className="w-full rounded-2xl border border-white/[12%] bg-slate-950/45 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-sky-300/60"
                     required
                   />
                 </label>
               </div>
 
               <label className="block">
-                <span className="mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-slate-300">
+                <span className="mb-2 block text-xs font-medium uppercase tracking-[.2em] text-slate-300">
                   Email
                 </span>
                 <input
                   type="email"
                   value={formData.email}
                   onChange={(event) => updateField("email", event.target.value)}
-                  className="w-full rounded-2xl border border-white/12 bg-slate-950/45 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-sky-300/60"
+                  className="w-full rounded-2xl border border-white/[12%] bg-slate-950/45 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-sky-300/60"
                   required
                 />
               </label>
 
               <div className="grid gap-6 sm:grid-cols-2">
                 <label className="block">
-                  <span className="mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-slate-300">
+                  <span className="mb-2 block text-xs font-medium uppercase tracking-[.2em] text-slate-300">
                     Organization
                   </span>
                   <input
@@ -263,32 +262,32 @@ export function MaintenancePage() {
                     onChange={(event) =>
                       updateField("organization", event.target.value)
                     }
-                    className="w-full rounded-2xl border border-white/12 bg-slate-950/45 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-sky-300/60"
+                    className="w-full rounded-2xl border border-white/[12%] bg-slate-950/45 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-sky-300/60"
                   />
                 </label>
 
                 <label className="block">
-                  <span className="mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-slate-300">
+                  <span className="mb-2 block text-xs font-medium uppercase tracking-[.2em] text-slate-300">
                     Role
                   </span>
                   <input
                     type="text"
                     value={formData.role}
                     onChange={(event) => updateField("role", event.target.value)}
-                    className="w-full rounded-2xl border border-white/12 bg-slate-950/45 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-sky-300/60"
+                    className="w-full rounded-2xl border border-white/[12%] bg-slate-950/45 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-sky-300/60"
                   />
                 </label>
               </div>
 
               <label className="block">
-                <span className="mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-slate-300">
+                <span className="mb-2 block text-xs font-medium uppercase tracking-[.2em] text-slate-300">
                   Message
                 </span>
                 <textarea
                   rows={5}
                   value={formData.message}
                   onChange={(event) => updateField("message", event.target.value)}
-                  className="w-full rounded-3xl border border-white/12 bg-slate-950/45 px-4 py-4 text-sm text-white outline-none placeholder:text-slate-500 focus:border-sky-300/60"
+                  className="w-full rounded-3xl border border-white/[12%] bg-slate-950/45 px-4 py-4 text-sm text-white outline-none placeholder:text-slate-500 focus:border-sky-300/60"
                   required
                 />
               </label>

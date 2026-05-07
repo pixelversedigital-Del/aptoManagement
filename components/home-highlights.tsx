@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import talentWorkflowVisual from "@/assets/images/talent-workflow-visual.svg";
+import talentWorkflowVisual from "@/assets/images/findTalent.jpg";
 
 const focusAreas = [
     {

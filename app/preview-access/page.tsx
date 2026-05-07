@@ -23,8 +23,8 @@ export default async function PreviewAccessPage({
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.16),_transparent_28%),linear-gradient(180deg,_#09131f_0%,_#0f1b2a_50%,_#13263a_100%)] px-6 py-16 text-white">
-      <div className="w-full max-w-md rounded-[2rem] border border-white/10 bg-white/6 p-8 shadow-2xl shadow-sky-950/30 backdrop-blur-xl">
-        <p className="text-sm uppercase tracking-[0.28em] text-sky-200/75">
+      <div className="w-full max-w-md rounded-[2rem] border border-white/10 bg-white/[6%] p-8 shadow-2xl shadow-sky-950/30 backdrop-blur-xl">
+        <p className="text-sm uppercase tracking-[.28em] text-sky-200/75">
           Private Site Access
         </p>
         <h1 className="mt-3 text-3xl font-extrabold tracking-tight">
@@ -43,7 +43,7 @@ export default async function PreviewAccessPage({
             <input
               type="password"
               name="token"
-              className="w-full rounded-2xl border border-white/12 bg-slate-950/50 px-4 py-3 text-sm text-white outline-none ring-0 placeholder:text-slate-500 focus:border-sky-300/60"
+              className="w-full rounded-2xl border border-white/[12%] bg-slate-950/50 px-4 py-3 text-sm text-white outline-none ring-0 placeholder:text-slate-500 focus:border-sky-300/60"
               placeholder="Enter token"
               required
             />
